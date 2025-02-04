@@ -62,7 +62,7 @@ export default function RootLayout({
                 <p className="text-center text-sm leading-loose text-gray-600 dark:text-gray-300 md:text-left">
                   Built with ❤️ by{" "}
                   <a
-                    href="https://github.com/convertly/convertly"
+                    href="https://github.com/Srujan-rai/Convertly.git"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium underline underline-offset-4"
