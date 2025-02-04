@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import type React from "react";
 import { ThemeProvider } from "next-themes";
-import { Analytics } from "@vercel/analytics/react"; // ✅ Import Analytics
+import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script"; // ✅ Import Next.js Script for AdSense
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +45,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        {/* ✅ Google AdSense Script for Ads */}
+        <Script
+          async
+          strategy="afterInteractive" // Ensures it loads after page is interactive
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3617340548468308"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -75,7 +85,7 @@ export default function RootLayout({
           </footer>
         </ThemeProvider>
 
-        {/* ✅ Add Analytics Here */}
+        {/* ✅ Add Analytics for Performance Tracking */}
         <Analytics />
       </body>
     </html>
