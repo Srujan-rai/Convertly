@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import type React from "react"
-import { ThemeProvider } from "next-themes"
-import { ThemeToggle } from "./components/ThemeToggle"
-import { Analytics } from "@vercel/analytics/react"
-const inter = Inter({ subsets: ["latin"] })
+import Link from "next/link";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import type React from "react";
+import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react"; // ✅ Import Analytics
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Convertly - Your Ultimate Conversion Tool",
@@ -35,12 +35,12 @@ export const metadata = {
       "Convert videos and documents with ease. Download InstaReels, YouTube videos, and convert between PDF and Word formats.",
     images: ["https://convertly.vercel.app/og-image.png"],
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className="h-full">
@@ -53,7 +53,6 @@ export default function RootLayout({
                   Convertly
                 </span>
               </Link>
-             
             </div>
           </header>
           <main className="flex-grow">{children}</main>
@@ -75,8 +74,10 @@ export default function RootLayout({
             </div>
           </footer>
         </ThemeProvider>
+
+        {/* ✅ Add Analytics Here */}
+        <Analytics />
       </body>
     </html>
-  )
+  );
 }
-
