@@ -46,7 +46,7 @@ export default function DocumentConverter() {
 
         // Get actual file name from response headers
         const contentDisposition = response.headers.get("Content-Disposition");
-        let suggestedFilename = "converted_file";
+        let suggestedFilename = "converted_file.zip";
         if (contentDisposition) {
             const match = contentDisposition.match(/filename="(.+)"/);
             if (match) {
