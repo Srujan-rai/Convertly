@@ -16,6 +16,7 @@ export default function DocumentConverter() {
   const [files, setFiles] = useState<File[]>([])
   const [conversionType, setConversionType] = useState<"pdf-to-doc" | "doc-to-pdf">("pdf-to-doc")
   const [isLoading, setIsLoading] = useState(false)
+  const [showConfetti, setShowConfetti] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,39 +26,53 @@ export default function DocumentConverter() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-    const formData = new FormData()
-    files.forEach((file) => formData.append("files", file))
-    formData.append("conversionType", conversionType)
+    const formData = new FormData();
+    files.forEach((file) => formData.append("files", file));
+    formData.append("conversionType", conversionType); // "pdf-to-doc" or "doc-to-pdf"
 
     try {
-      const response = await fetch("/api/convert", {
-        method: "POST",
-        body: formData,
-      })
+        const response = await fetch("http://127.0.0.1:5000/convert", {
+            method: "POST",
+            body: formData,
+        });
 
-      if (!response.ok) {
-        throw new Error("Conversion failed")
-      }
+        if (!response.ok) {
+            throw new Error("Conversion failed");
+        }
 
-      const blob = await response.blob()
-      const downloadUrl = window.URL.createObjectURL(blob)
-      const a = document.createElement("a")
-      a.href = downloadUrl
-      a.download = `converted_files.zip`
-      document.body.appendChild(a)
-      a.click()
-      window.URL.revokeObjectURL(downloadUrl)
+        // Get actual file name from response headers
+        const contentDisposition = response.headers.get("Content-Disposition");
+        let suggestedFilename = "converted_file";
+        if (contentDisposition) {
+            const match = contentDisposition.match(/filename="(.+)"/);
+            if (match) {
+                suggestedFilename = match[1];
+            }
+        }
+
+        // Convert response to a file and download it
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download = suggestedFilename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(downloadUrl);
+        setShowConfetti(true)
+      setTimeout(() => setShowConfetti(false), 5000);
     } catch (error) {
-      console.error("Conversion failed:", error)
-      setError("Conversion failed. Please try again.")
+        console.error("Conversion failed:", error);
+        setError("Conversion failed. Please try again.");
     }
 
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+};
+
 
   const jsonLd = {
     "@context": "https://schema.org",

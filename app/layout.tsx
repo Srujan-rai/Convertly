@@ -1,12 +1,11 @@
-import Link from "next/link";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import type React from "react";
-import { ThemeProvider } from "next-themes";
-import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script"; // ✅ Import Next.js Script for AdSense
-
-const inter = Inter({ subsets: ["latin"] });
+import Link from "next/link"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import type React from "react"
+import { ThemeProvider } from "next-themes"
+import { ThemeToggle } from "./components/ThemeToggle"
+import { Analytics } from "@vercel/analytics/react"
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Convertly - Your Ultimate Conversion Tool",
@@ -36,24 +35,15 @@ export const metadata = {
       "Convert videos and documents with ease. Download InstaReels, YouTube videos, and convert between PDF and Word formats.",
     images: ["https://convertly.vercel.app/og-image.png"],
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" className="h-full">
-      <head>
-        {/* ✅ Google AdSense Script for Ads */}
-        <Script
-          async
-          strategy="afterInteractive" // Ensures it loads after page is interactive
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3617340548468308"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
@@ -63,6 +53,7 @@ export default function RootLayout({
                   Convertly
                 </span>
               </Link>
+             
             </div>
           </header>
           <main className="flex-grow">{children}</main>
@@ -72,7 +63,7 @@ export default function RootLayout({
                 <p className="text-center text-sm leading-loose text-gray-600 dark:text-gray-300 md:text-left">
                   Built with ❤️ by{" "}
                   <a
-                    href="https://github.com/Srujan-rai/Convertly.git"
+                    href="https://github.com/convertly/convertly"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium underline underline-offset-4"
@@ -84,10 +75,8 @@ export default function RootLayout({
             </div>
           </footer>
         </ThemeProvider>
-
-        {/* ✅ Add Analytics for Performance Tracking */}
-        <Analytics />
       </body>
     </html>
-  );
+  )
 }
+

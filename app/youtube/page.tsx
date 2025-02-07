@@ -22,7 +22,7 @@ export default function YouTubeDownloader() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch("/api/youtube", {
+      const response = await fetch("https://convertly-api.vercel.app/youtube", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export default function YouTubeDownloader() {
       window.URL.revokeObjectURL(downloadUrl)
 
       setShowConfetti(true)
-      setTimeout(() => setShowConfetti(false), 5000) // Hide confetti after 5 seconds
+      setTimeout(() => setShowConfetti(false), 10000) // Hide confetti after 5 seconds
     } catch (error) {
       console.error("Download failed:", error)
       setError("Download failed. Please check your URL and try again.")

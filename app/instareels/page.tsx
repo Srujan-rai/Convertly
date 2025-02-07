@@ -22,7 +22,7 @@ export default function InstaReelsDownloader() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch("/api/instareel", {
+      const response = await fetch("https://convertly-api.vercel.app/instagram", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
