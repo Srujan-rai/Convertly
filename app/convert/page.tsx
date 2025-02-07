@@ -35,7 +35,7 @@ export default function DocumentConverter() {
     formData.append("conversionType", conversionType); // "pdf-to-doc" or "doc-to-pdf"
 
     try {
-        const response = await fetch("http://127.0.0.1:5000/convert", {
+        const response = await fetch("https://convertly-api.vercel.app/convert", {
             method: "POST",
             body: formData,
         });
