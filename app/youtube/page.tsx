@@ -26,7 +26,7 @@ export default function YouTubeDownloader() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch("http://127.0.0.1:5000/youtube", {
+      const response = await fetch("https://convertly-api.vercel.app/youtube", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
