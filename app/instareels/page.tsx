@@ -35,7 +35,7 @@ export default function InstaReelsDownloader() {
       const downloadUrl = window.URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = downloadUrl
-      a.download = `instareel.${format}`
+      a.download = `convertly.${format}`
       document.body.appendChild(a)
       a.click()
       window.URL.revokeObjectURL(downloadUrl)
