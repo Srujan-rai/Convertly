@@ -126,5 +126,5 @@ For questions or suggestions, feel free to reach out:
 ---
 
 *Crafted with ❤️ by Srujan Rai*
-```
+
 
