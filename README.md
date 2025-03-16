@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="path_to_your_logo" alt="Convertly Logo" width="200" />
+  <img src="Screenshot from 2025-03-16 09-06-15.png" alt="Convertly Logo" width="200" />
 </div>
 
 # Convertly
